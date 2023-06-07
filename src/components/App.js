@@ -14,6 +14,24 @@ function App() {
       .then((petData) => setPets(petData));
   }, []);
 
+  const onChangeType = (type) => {
+    if (type !== 'all') {
+      setFilters({ type: type });
+    } else {
+      setFilters({ type: 'all' });
+    }
+  };
+
+  const onFindPetsClick = () => {
+    let apiUrl = 'http://localhost:3001/pets';
+    if (filters.type !== 'all') {
+      apiUrl += `?type=${filters.type}`;
+    }
+    fetch(apiUrl)
+      .then((response) => response.json())
+      .then((petData) => setPets(petData));
+  };
+
   return (
     <div className='ui container'>
       <header>
@@ -22,10 +40,13 @@ function App() {
       <div className='ui container'>
         <div className='ui grid'>
           <div className='four wide column'>
-            <Filters />
+            <Filters
+              onFindPetsClick={onFindPetsClick}
+              onChangeType={onChangeType}
+            />
           </div>
           <div className='twelve wide column'>
-            <PetBrowser pet={pets} />
+            <PetBrowser pets={pets} />
           </div>
         </div>
       </div>

@@ -2,10 +2,10 @@ import React from 'react';
 
 import Pet from './Pet';
 
-function PetBrowser({ pet }) {
+function PetBrowser({ pets }) {
   return (
     <div className='ui cards'>
-      {pet.map((pet, id) => {
+      {pets.map((pet) => {
         return (
           <Pet
             key={pet.id}
