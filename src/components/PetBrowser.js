@@ -5,18 +5,12 @@ import Pet from './Pet';
 function PetBrowser({ pets }) {
   return (
     <div className='ui cards'>
-      {pets.map((pet) => {
-        return (
-          <Pet
-            key={pet.id}
-            name={pet.name}
-            type={pet.type}
-            age={pet.age}
-            weight={pet.weight}
-            gender={pet.gender}
-          />
-        );
-      })}
+      {pets.map((pet) => (
+        <Pet
+          key={pet.id}
+          pet={pet}
+        />
+      ))}
     </div>
   );
 }
